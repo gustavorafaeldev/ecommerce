@@ -2,6 +2,7 @@ package br.com.ecommerce.ecommerce.models;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 @Entity
@@ -25,7 +26,8 @@ public class ProductModel {
     @Column(length = 25, nullable = false)
     private double price; 
 
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "categoryId")
+    @JoinColumn(name = "category_id")
     private CategoryModel categoryModel;
 }
