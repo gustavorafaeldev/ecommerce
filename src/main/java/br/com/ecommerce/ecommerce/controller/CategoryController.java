@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @CrossOrigin("*")
 @RestController
@@ -19,9 +20,10 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @GetMapping("/getCategories")
-    public ResponseEntity<List<CategoryModel>> findAll () {
+    public ResponseEntity<List<CategoryDTO>> findAll () {
         List<CategoryModel> list = categoryService.findAll();
-        return new ResponseEntity<>(list, HttpStatus.OK);
+        List<CategoryDTO> listDTO = list.stream().map(obj -> new CategoryDTO(obj)).collect(Collectors.toList());
+        return new ResponseEntity<>(listDTO, HttpStatus.OK);
     }
 
     @PostMapping("/createCategory")
