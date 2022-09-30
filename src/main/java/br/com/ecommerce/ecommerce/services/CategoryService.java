@@ -4,6 +4,7 @@ import br.com.ecommerce.ecommerce.exceptions.ObjectNotFoundException;
 import br.com.ecommerce.ecommerce.models.CategoryModel;
 import br.com.ecommerce.ecommerce.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,5 +28,14 @@ public class CategoryService {
         Optional<CategoryModel> obj = categoryRepository.findById(id);
         return obj.orElseThrow(() ->
                 new ObjectNotFoundException("Categoria não encontrada! Id: "+ id + "Tipo: "+ CategoryModel.class.getName()));
+    }
+
+    public void delete(Long id) {
+        try {
+            categoryRepository.deleteById(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new br.com.ecommerce.ecommerce.exceptions.DataIntegrityViolationException("" +
+                    "Categoria não pode ser deletada, possui produtos associados.");
+        }
     }
 }
