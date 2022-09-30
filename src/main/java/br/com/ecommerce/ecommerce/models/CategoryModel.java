@@ -22,7 +22,7 @@ public class CategoryModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 255, nullable = false)
+    @Column(length = 255, nullable = true)
     private String categoryName;
 
     @Column(length = 255, nullable = false)

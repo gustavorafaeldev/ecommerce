@@ -1,5 +1,6 @@
 package br.com.ecommerce.ecommerce.controller;
 
+import br.com.ecommerce.ecommerce.Dtos.CategoryDTO;
 import br.com.ecommerce.ecommerce.models.CategoryModel;
 import br.com.ecommerce.ecommerce.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +34,11 @@ public class CategoryController {
     public ResponseEntity<CategoryModel> delete(@PathVariable Long id) {
         categoryService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<CategoryModel> update(@PathVariable Long id, @RequestBody CategoryDTO categoryDTO){
+        CategoryModel obj = categoryService.update(id, categoryDTO);
+        return new ResponseEntity<>(obj, HttpStatus.CREATED);
     }
 }

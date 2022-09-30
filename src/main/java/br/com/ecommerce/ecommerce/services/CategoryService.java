@@ -1,5 +1,6 @@
 package br.com.ecommerce.ecommerce.services;
 
+import br.com.ecommerce.ecommerce.Dtos.CategoryDTO;
 import br.com.ecommerce.ecommerce.exceptions.ObjectNotFoundException;
 import br.com.ecommerce.ecommerce.models.CategoryModel;
 import br.com.ecommerce.ecommerce.repository.CategoryRepository;
@@ -37,5 +38,12 @@ public class CategoryService {
             throw new br.com.ecommerce.ecommerce.exceptions.DataIntegrityViolationException("" +
                     "Categoria não pode ser deletada, possui produtos associados.");
         }
+    }
+
+    public CategoryModel update(Long id, CategoryDTO categoryDTO) {
+        CategoryModel newObj = findById(id);
+        newObj.setCategoryName(categoryDTO.getCategoryName());
+        newObj.setDescription(categoryDTO.getDescription());
+        return categoryRepository.save(newObj);
     }
 }

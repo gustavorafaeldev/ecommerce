@@ -5,6 +5,7 @@ import br.com.ecommerce.ecommerce.models.ProductModel;
 import br.com.ecommerce.ecommerce.repository.ProductRepository;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -47,10 +48,7 @@ public class ProductService {
     }
 
     public void delete(Long id) {
-        try {
-            productRepository.deleteById(id);
-        } catch (ObjectNotFoundException e) {
-            new ObjectNotFoundException("Produto não encontrado!");
-        }
+        findById(id);
+        productRepository.deleteById(id);
     }
 }
