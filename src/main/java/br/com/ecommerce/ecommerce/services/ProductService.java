@@ -45,4 +45,12 @@ public class ProductService {
         updateData(newObj, productModel);
         return productRepository.save(newObj);
     }
+
+    public void delete(Long id) {
+        try {
+            productRepository.deleteById(id);
+        } catch (ObjectNotFoundException e) {
+            new ObjectNotFoundException("Produto não encontrado!");
+        }
+    }
 }
