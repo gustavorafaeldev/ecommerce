@@ -29,4 +29,10 @@ public class ProductController {
         ProductModel obj = productService.create(id_cat, productModel);
         return new ResponseEntity<>(obj, HttpStatus.CREATED);
     }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<ProductModel> update(@PathVariable Long id, @RequestBody ProductModel productModel) {
+        ProductModel obj = productService.update(id, productModel);
+        return new ResponseEntity<>(obj, HttpStatus.CREATED);
+    }
 }
