@@ -23,6 +23,12 @@ public class ProductController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductModel> findById(@PathVariable Long id) {
+        ProductModel productModel = productService.findById(id);
+        return new ResponseEntity<>(productModel, HttpStatus.OK);
+    }
+
     @PostMapping("/add")
     public ResponseEntity<ProductModel> create(@RequestParam(value = "category", defaultValue = "0") Long id_cat,
                                                @RequestBody ProductModel productModel) {
