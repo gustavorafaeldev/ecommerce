@@ -26,6 +26,12 @@ public class CategoryController {
         return new ResponseEntity<>(listDTO, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<CategoryModel> findById(@PathVariable Long id) {
+        CategoryModel categoryModel = categoryService.findById(id);
+        return new ResponseEntity<>(categoryModel, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<CategoryModel> create(@RequestBody CategoryModel categoryModel) {
         CategoryModel obj = categoryService.create(categoryModel);
