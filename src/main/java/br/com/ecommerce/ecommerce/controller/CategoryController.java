@@ -19,14 +19,14 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @GetMapping("/getCategories")
+    @GetMapping
     public ResponseEntity<List<CategoryDTO>> findAll () {
         List<CategoryModel> list = categoryService.findAll();
         List<CategoryDTO> listDTO = list.stream().map(obj -> new CategoryDTO(obj)).collect(Collectors.toList());
         return new ResponseEntity<>(listDTO, HttpStatus.OK);
     }
 
-    @PostMapping("/createCategory")
+    @PostMapping
     public ResponseEntity<CategoryModel> create(@RequestBody CategoryModel categoryModel) {
         CategoryModel obj = categoryService.create(categoryModel);
         return new ResponseEntity<>(obj, HttpStatus.CREATED);

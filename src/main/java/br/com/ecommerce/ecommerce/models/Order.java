@@ -8,6 +8,7 @@ import java.util.List;
 @Data
 @Entity
 public class Order {
+
     private String createdDate;
 
     @Id
@@ -17,6 +18,5 @@ public class Order {
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems;
 
-    private String sessionId;
     private double totalPrice;
 }
