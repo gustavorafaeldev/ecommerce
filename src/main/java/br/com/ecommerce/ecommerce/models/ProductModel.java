@@ -30,4 +30,5 @@ public class ProductModel {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private CategoryModel categoryModel;
+
 }

@@ -3,29 +3,24 @@ package br.com.ecommerce.ecommerce.models;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import net.bytebuddy.dynamic.loading.ClassReloadingStrategy.Strategy;
 import lombok.Data;
 
 @Entity
 @Data
+@Table(name = "categories")
 public class CategoryModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 255, nullable = true)
+    @Column(name = "category_name", nullable = false)
     private String categoryName;
 
-    @Column(length = 255, nullable = false)
+    @Column(nullable = false)
     private String description;
 
     @Column(length = 255, nullable = true)
