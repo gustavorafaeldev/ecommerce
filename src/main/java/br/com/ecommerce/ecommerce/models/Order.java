@@ -22,4 +22,5 @@ public class Order {
 
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItemList = new ArrayList<>();
+
 }

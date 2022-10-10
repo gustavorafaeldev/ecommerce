@@ -19,8 +19,9 @@ public class OrderItemController {
 
     @PostMapping("/add")
     public ResponseEntity<OrderItem> create(@RequestParam(value = "order", defaultValue = "0") Long id_order,
-                                            @RequestBody OrderItem orderItem) {
-        OrderItem obj = service.create(id_order, orderItem);
+                                            @RequestBody OrderItem orderItem,
+                                            @RequestParam(value = "product", defaultValue = "0")Long id_product)  {
+        OrderItem obj = service.create(id_order, id_product, orderItem);
         return new ResponseEntity<>(obj, HttpStatus.CREATED);
     }
 

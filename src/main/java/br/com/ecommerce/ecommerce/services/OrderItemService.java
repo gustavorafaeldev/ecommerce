@@ -19,8 +19,13 @@ public class OrderItemService {
     @Autowired
     private OrderService orderService;
 
-    public OrderItem create(Long id_order, OrderItem orderItem) {
+    @Autowired
+    private ProductService productService;
+
+
+    public OrderItem create(Long id_order, Long id_product, OrderItem orderItem) {
         orderItem.setOrder(orderService.findById(id_order));
+        orderItem.setProductModel(productService.findById(id_product));
         return orderItemRepository.save(orderItem);
     }
 
