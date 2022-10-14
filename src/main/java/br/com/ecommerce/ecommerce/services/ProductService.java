@@ -1,12 +1,9 @@
 package br.com.ecommerce.ecommerce.services;
 
 import br.com.ecommerce.ecommerce.exceptions.ObjectNotFoundException;
-import br.com.ecommerce.ecommerce.models.ProductModel;
-import br.com.ecommerce.ecommerce.repository.ProductRepository;
-import org.jetbrains.annotations.NotNull;
+import br.com.ecommerce.ecommerce.models.product.ProductModel;
+import br.com.ecommerce.ecommerce.repository.product.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

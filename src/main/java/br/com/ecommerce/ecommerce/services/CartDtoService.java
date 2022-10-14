@@ -1,8 +1,8 @@
 package br.com.ecommerce.ecommerce.services;
 
 import br.com.ecommerce.ecommerce.exceptions.ObjectNotFoundException;
-import br.com.ecommerce.ecommerce.models.CartDto;
-import br.com.ecommerce.ecommerce.repository.CartDtoRepository;
+import br.com.ecommerce.ecommerce.models.cart.CartDto;
+import br.com.ecommerce.ecommerce.repository.cart.CartDtoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +25,6 @@ public class CartDtoService {
 
     public CartDto findById(Long id) {
         return cartDtoRepository.findById(id).orElseThrow(
-                ()-> new ObjectNotFoundException("Objeto não encotnrado"));
+                ()-> new ObjectNotFoundException("Objeto não encontrado"));
     }
 }

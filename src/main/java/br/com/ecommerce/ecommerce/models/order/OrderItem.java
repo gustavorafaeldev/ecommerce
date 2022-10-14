@@ -1,5 +1,6 @@
-package br.com.ecommerce.ecommerce.models;
+package br.com.ecommerce.ecommerce.models.order;
 
+import br.com.ecommerce.ecommerce.models.product.ProductModel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
@@ -19,6 +20,7 @@ public class OrderItem {
 
     @ManyToOne
     @JoinColumn(name = "product_id")
+    @JsonIgnore
     private ProductModel productModel;
 
     @ManyToOne

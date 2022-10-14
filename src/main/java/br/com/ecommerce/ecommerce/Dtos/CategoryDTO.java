@@ -1,6 +1,6 @@
 package br.com.ecommerce.ecommerce.Dtos;
 
-import br.com.ecommerce.ecommerce.models.CategoryModel;
+import br.com.ecommerce.ecommerce.models.product.CategoryModel;
 import lombok.Data;
 
 import javax.persistence.Column;

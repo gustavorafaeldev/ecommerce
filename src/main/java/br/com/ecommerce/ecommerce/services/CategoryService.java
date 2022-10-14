@@ -2,8 +2,8 @@ package br.com.ecommerce.ecommerce.services;
 
 import br.com.ecommerce.ecommerce.Dtos.CategoryDTO;
 import br.com.ecommerce.ecommerce.exceptions.ObjectNotFoundException;
-import br.com.ecommerce.ecommerce.models.CategoryModel;
-import br.com.ecommerce.ecommerce.repository.CategoryRepository;
+import br.com.ecommerce.ecommerce.models.product.CategoryModel;
+import br.com.ecommerce.ecommerce.repository.category.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;

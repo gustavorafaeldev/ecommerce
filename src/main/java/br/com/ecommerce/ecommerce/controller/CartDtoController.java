@@ -1,6 +1,6 @@
 package br.com.ecommerce.ecommerce.controller;
 
-import br.com.ecommerce.ecommerce.models.CartDto;
+import br.com.ecommerce.ecommerce.models.cart.CartDto;
 import br.com.ecommerce.ecommerce.services.CartDtoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

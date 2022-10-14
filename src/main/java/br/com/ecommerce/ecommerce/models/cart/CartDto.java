@@ -1,4 +1,4 @@
-package br.com.ecommerce.ecommerce.models;
+package br.com.ecommerce.ecommerce.models.cart;
 
 import lombok.Data;
 

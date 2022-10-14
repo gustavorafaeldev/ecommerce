@@ -1,6 +1,6 @@
 package br.com.ecommerce.ecommerce.controller;
 
-import br.com.ecommerce.ecommerce.models.Order;
+import br.com.ecommerce.ecommerce.models.order.Order;
 import br.com.ecommerce.ecommerce.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

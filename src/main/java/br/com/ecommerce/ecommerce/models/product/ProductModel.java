@@ -1,6 +1,7 @@
-package br.com.ecommerce.ecommerce.models;
+package br.com.ecommerce.ecommerce.models.product;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
@@ -15,12 +16,14 @@ public class ProductModel {
 
 
     @Column(length = 255, nullable = false)
+    @NotEmpty(message = "Campo obrigatório")
     private String description;
 
     @Column(length = 255, nullable = true)
     private String imageUrl;
 
     @Column(length = 255, nullable = false)
+    @NotEmpty(message = "Campo obrigatório")
     private String name;
 
     @Column(length = 25, nullable = false)

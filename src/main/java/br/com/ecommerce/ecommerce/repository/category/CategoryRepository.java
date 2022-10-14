@@ -1,11 +1,8 @@
-package br.com.ecommerce.ecommerce.repository;
+package br.com.ecommerce.ecommerce.repository.category;
 
-import br.com.ecommerce.ecommerce.models.CategoryModel;
+import br.com.ecommerce.ecommerce.models.product.CategoryModel;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<CategoryModel, Long> {

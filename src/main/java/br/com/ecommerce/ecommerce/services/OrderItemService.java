@@ -1,14 +1,11 @@
 package br.com.ecommerce.ecommerce.services;
 
-import br.com.ecommerce.ecommerce.models.Order;
-import br.com.ecommerce.ecommerce.models.OrderItem;
-import br.com.ecommerce.ecommerce.repository.OrderItemRepository;
-import br.com.ecommerce.ecommerce.repository.OrderRepository;
+import br.com.ecommerce.ecommerce.models.order.OrderItem;
+import br.com.ecommerce.ecommerce.repository.order.OrderItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class OrderItemService {

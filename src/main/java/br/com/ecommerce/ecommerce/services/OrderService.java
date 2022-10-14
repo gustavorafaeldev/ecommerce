@@ -1,8 +1,8 @@
 package br.com.ecommerce.ecommerce.services;
 
 import br.com.ecommerce.ecommerce.exceptions.ObjectNotFoundException;
-import br.com.ecommerce.ecommerce.models.Order;
-import br.com.ecommerce.ecommerce.repository.OrderRepository;
+import br.com.ecommerce.ecommerce.models.order.Order;
+import br.com.ecommerce.ecommerce.repository.order.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

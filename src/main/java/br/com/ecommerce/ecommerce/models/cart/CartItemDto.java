@@ -1,13 +1,17 @@
-package br.com.ecommerce.ecommerce.models;
+package br.com.ecommerce.ecommerce.models.cart;
 
+import br.com.ecommerce.ecommerce.models.product.ProductModel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Data
-public class CartItemDto {
+public class CartItemDto implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +27,6 @@ public class CartItemDto {
 
     @ManyToOne
     @JoinColumn(name = "cartItemDtos")
+    @JsonIgnore
     private CartDto cartDto;
-
 }

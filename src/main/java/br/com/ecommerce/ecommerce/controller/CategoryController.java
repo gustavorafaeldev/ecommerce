@@ -1,13 +1,14 @@
 package br.com.ecommerce.ecommerce.controller;
 
 import br.com.ecommerce.ecommerce.Dtos.CategoryDTO;
-import br.com.ecommerce.ecommerce.models.CategoryModel;
+import br.com.ecommerce.ecommerce.models.product.CategoryModel;
 import br.com.ecommerce.ecommerce.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,7 +34,7 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<CategoryModel> create(@RequestBody CategoryModel categoryModel) {
+    public ResponseEntity<CategoryModel> create(@Valid @RequestBody CategoryModel categoryModel) {
         CategoryModel obj = categoryService.create(categoryModel);
         return new ResponseEntity<>(obj, HttpStatus.CREATED);
     }

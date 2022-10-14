@@ -1,9 +1,9 @@
 package br.com.ecommerce.ecommerce.services;
 
-import br.com.ecommerce.ecommerce.models.CategoryModel;
-import br.com.ecommerce.ecommerce.models.ProductModel;
-import br.com.ecommerce.ecommerce.repository.CategoryRepository;
-import br.com.ecommerce.ecommerce.repository.ProductRepository;
+import br.com.ecommerce.ecommerce.models.product.CategoryModel;
+import br.com.ecommerce.ecommerce.models.product.ProductModel;
+import br.com.ecommerce.ecommerce.repository.category.CategoryRepository;
+import br.com.ecommerce.ecommerce.repository.product.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

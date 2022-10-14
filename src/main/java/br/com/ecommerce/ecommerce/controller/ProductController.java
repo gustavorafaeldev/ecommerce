@@ -1,12 +1,13 @@
 package br.com.ecommerce.ecommerce.controller;
 
-import br.com.ecommerce.ecommerce.models.ProductModel;
+import br.com.ecommerce.ecommerce.models.product.ProductModel;
 import br.com.ecommerce.ecommerce.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -30,14 +31,14 @@ public class ProductController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<ProductModel> create(@RequestParam(value = "category", defaultValue = "0") Long id_cat,
+    public ResponseEntity<ProductModel> create(@Valid @RequestParam(value = "category", defaultValue = "0") Long id_cat,
                                                @RequestBody ProductModel productModel) {
         ProductModel obj = productService.create(id_cat, productModel);
         return new ResponseEntity<>(obj, HttpStatus.CREATED);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<ProductModel> update(@PathVariable Long id, @RequestBody ProductModel productModel) {
+    public ResponseEntity<ProductModel> update(@Valid @PathVariable Long id, @RequestBody ProductModel productModel) {
         ProductModel obj = productService.update(id, productModel);
         return new ResponseEntity<>(obj, HttpStatus.CREATED);
     }

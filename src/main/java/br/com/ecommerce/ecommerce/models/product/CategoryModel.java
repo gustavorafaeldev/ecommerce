@@ -1,11 +1,12 @@
-package br.com.ecommerce.ecommerce.models;
+package br.com.ecommerce.ecommerce.models.product;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
-import net.bytebuddy.dynamic.loading.ClassReloadingStrategy.Strategy;
+import br.com.ecommerce.ecommerce.models.product.ProductModel;
 import lombok.Data;
 
 @Entity
@@ -18,9 +19,12 @@ public class CategoryModel {
     private Long id;
 
     @Column(name = "category_name", nullable = false)
+    @NotEmpty(message = "Campo obrigatório")
     private String categoryName;
 
+
     @Column(nullable = false)
+    @NotEmpty(message = "Campo obrigatório")
     private String description;
 
     @Column(length = 255, nullable = true)
