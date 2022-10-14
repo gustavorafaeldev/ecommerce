@@ -2,6 +2,8 @@ package br.com.ecommerce.ecommerce.models.user;
 
 import lombok.Data;
 
+import java.util.List;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -28,8 +30,8 @@ public class User {
     @NotEmpty(message = "Campo obrigatório")
     private String password;
 
-    private enum role {
-        user, manager, admin
-    }
+    @ManyToMany
+    private List<Role> roles;
+
 
 }

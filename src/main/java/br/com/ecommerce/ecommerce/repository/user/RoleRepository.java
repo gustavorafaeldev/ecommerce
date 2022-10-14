@@ -1,11 +1,9 @@
 package br.com.ecommerce.ecommerce.repository.user;
 
-import br.com.ecommerce.ecommerce.models.user.User;
+import br.com.ecommerce.ecommerce.models.user.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-
-    User findByEmail(String email);
+public interface RoleRepository extends JpaRepository<Role, Long> {
 }

@@ -1,6 +1,8 @@
 package br.com.ecommerce.ecommerce.controller.user;
 
+import br.com.ecommerce.ecommerce.Dtos.CreateUserRoleDTO;
 import br.com.ecommerce.ecommerce.models.user.User;
+import br.com.ecommerce.ecommerce.services.user.RoleService;
 import br.com.ecommerce.ecommerce.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,13 +12,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @PostMapping("create")
+    @Autowired
+    private RoleService roleService;
+
+    @PostMapping("/create")
     public ResponseEntity<User> create(@RequestBody User user) {
         User obj = userService.create(user);
         return new ResponseEntity<>(obj, HttpStatus.CREATED);
@@ -26,5 +31,11 @@ public class UserController {
     public ResponseEntity<List<User>> getAll() {
         List<User> userList = userService.getAll();
         return new ResponseEntity<>(userList, HttpStatus.OK);
+    }
+
+    @PostMapping("/role")
+    public ResponseEntity<User> role(@RequestBody CreateUserRoleDTO createUserRoleDTO) {
+        User obj = roleService.create(createUserRoleDTO);
+        return new ResponseEntity<>(obj, HttpStatus.CREATED);
     }
 }
