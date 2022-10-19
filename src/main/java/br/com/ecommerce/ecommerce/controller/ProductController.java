@@ -1,7 +1,7 @@
 package br.com.ecommerce.ecommerce.controller;
 
-import br.com.ecommerce.ecommerce.models.product.ProductModel;
-import br.com.ecommerce.ecommerce.services.ProductService;
+import br.com.ecommerce.ecommerce.persistance.entity.product.ProductModel;
+import br.com.ecommerce.ecommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,22 +18,22 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping()
+    @GetMapping
     public ResponseEntity<List<ProductModel>> findAll() {
-        List<ProductModel> list = productService.findAll();
-        return new ResponseEntity<>(list, HttpStatus.OK);
+        List<ProductModel> productModelList = productService.findAll();
+        return new ResponseEntity<>(productModelList, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<ProductModel> findById(@PathVariable Long id) {
         ProductModel productModel = productService.findById(id);
         return new ResponseEntity<>(productModel, HttpStatus.OK);
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<ProductModel> create(@Valid @RequestParam(value = "category", defaultValue = "0") Long id_cat,
+    @PostMapping
+    public ResponseEntity<ProductModel> create(@Valid @RequestParam(value = "idCat", defaultValue = "0") Long idCat,
                                                @RequestBody ProductModel productModel) {
-        ProductModel obj = productService.create(id_cat, productModel);
+        ProductModel obj = productService.create(idCat, productModel);
         return new ResponseEntity<>(obj, HttpStatus.CREATED);
     }
 

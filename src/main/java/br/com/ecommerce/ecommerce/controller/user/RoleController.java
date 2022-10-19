@@ -1,7 +1,7 @@
 package br.com.ecommerce.ecommerce.controller.user;
 
-import br.com.ecommerce.ecommerce.models.user.Role;
-import br.com.ecommerce.ecommerce.services.user.RoleService;
+import br.com.ecommerce.ecommerce.persistance.entity.user.Role;
+import br.com.ecommerce.ecommerce.service.user.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,7 +1,7 @@
 package br.com.ecommerce.ecommerce.controller;
 
-import br.com.ecommerce.ecommerce.models.order.OrderItem;
-import br.com.ecommerce.ecommerce.services.OrderItemService;
+import br.com.ecommerce.ecommerce.persistance.entity.order.OrderItem;
+import br.com.ecommerce.ecommerce.service.OrderItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,16 +18,16 @@ public class OrderItemController {
     private OrderItemService service;
 
     @PostMapping("/add")
-    public ResponseEntity<OrderItem> create(@RequestParam(value = "order", defaultValue = "0") Long id_order,
+    public ResponseEntity<OrderItem> create(@RequestParam(value = "orderId", defaultValue = "0") Long orderId,
                                             @RequestBody OrderItem orderItem,
-                                            @RequestParam(value = "product", defaultValue = "0")Long id_product)  {
-        OrderItem obj = service.create(id_order, id_product, orderItem);
-        return new ResponseEntity<>(obj, HttpStatus.CREATED);
+                                            @RequestParam(value = "productId", defaultValue = "0")Long productId)  {
+        OrderItem orderItemSaved = service.create(orderId, productId, orderItem);
+        return new ResponseEntity<>(orderItemSaved, HttpStatus.CREATED);
     }
 
     @GetMapping
     public ResponseEntity<List<OrderItem>> get(OrderItem orderItem) {
-        List<OrderItem> list = service.get();
-        return new ResponseEntity<>(list, HttpStatus.OK);
+        List<OrderItem> orderItems = service.get();
+        return new ResponseEntity<>(orderItems, HttpStatus.OK);
     }
 }

@@ -1,7 +1,8 @@
 package br.com.ecommerce.ecommerce.controller;
 
-import br.com.ecommerce.ecommerce.models.cart.CartItemDto;
-import br.com.ecommerce.ecommerce.services.CartItemDtoService;
+import br.com.ecommerce.ecommerce.persistance.entity.cart.CartItemDto;
+import br.com.ecommerce.ecommerce.service.CartItemDtoService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,10 +13,10 @@ import java.util.List;
 @RestController
 @RequestMapping("cartItem")
 @CrossOrigin("*")
+@RequiredArgsConstructor
 public class CartItemDtoController {
 
-    @Autowired
-    private CartItemDtoService cartItemDtoService;
+    private final CartItemDtoService cartItemDtoService;
 
     @GetMapping
     public ResponseEntity<List<CartItemDto>> findAll() {
@@ -29,12 +30,13 @@ public class CartItemDtoController {
         return new ResponseEntity<>(cartItemDto, HttpStatus.OK);
     }
 
-    @PostMapping("/add")
+
+    @PostMapping
     public ResponseEntity<CartItemDto> create(@RequestBody CartItemDto cartItemDto,
-                                              @RequestParam(value = "product") Long id_product,
-                                              @RequestParam(value = "cart") Long id_cart
+                                              @RequestParam(value = "idProduct") Long idProduct,
+                                              @RequestParam(value = "idCart") Long idCart
                                               ){
-        CartItemDto obj = cartItemDtoService.create(id_product, id_cart, cartItemDto);
+        CartItemDto obj = cartItemDtoService.create(idProduct, idCart, cartItemDto);
         return new ResponseEntity<>(obj, HttpStatus.CREATED);
 
     }

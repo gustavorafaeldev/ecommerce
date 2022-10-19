@@ -1,53 +1,56 @@
 package br.com.ecommerce.ecommerce.controller;
 
-import br.com.ecommerce.ecommerce.Dtos.CategoryDTO;
-import br.com.ecommerce.ecommerce.models.product.CategoryModel;
-import br.com.ecommerce.ecommerce.services.CategoryService;
-import org.springframework.beans.factory.annotation.Autowired;
+import br.com.ecommerce.ecommerce.exception.ObjectNotFoundException;
+import br.com.ecommerce.ecommerce.model.request.CategoryRequest;
+import br.com.ecommerce.ecommerce.model.response.CategoryResponse;
+import br.com.ecommerce.ecommerce.persistance.entity.product.CategoryModel;
+import br.com.ecommerce.ecommerce.service.CategoryService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @CrossOrigin("*")
 @RestController
 @RequestMapping("category")
+@RequiredArgsConstructor
 public class CategoryController {
 
-    @Autowired
-    private CategoryService categoryService;
-
-    @GetMapping
-    public ResponseEntity<List<CategoryDTO>> findAll () {
-        List<CategoryModel> list = categoryService.findAll();
-        List<CategoryDTO> listDTO = list.stream().map(obj -> new CategoryDTO(obj)).collect(Collectors.toList());
-        return new ResponseEntity<>(listDTO, HttpStatus.OK);
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<CategoryModel> findById(@PathVariable Long id) {
-        CategoryModel categoryModel = categoryService.findById(id);
-        return new ResponseEntity<>(categoryModel, HttpStatus.OK);
-    }
+    private final CategoryService categoryService;
 
     @PostMapping
-    public ResponseEntity<CategoryModel> create(@Valid @RequestBody CategoryModel categoryModel) {
-        CategoryModel obj = categoryService.create(categoryModel);
-        return new ResponseEntity<>(obj, HttpStatus.CREATED);
+    public ResponseEntity<CategoryResponse> create(@Valid @RequestBody CategoryRequest categoryRequest) {
+        CategoryResponse categoryResponse = categoryService.create(categoryRequest);
+        return new ResponseEntity<>(categoryResponse, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<CategoryModel> delete(@PathVariable Long id) {
+    @GetMapping
+    public ResponseEntity<List<CategoryResponse>> findAll() {
+        List<CategoryResponse> categoryResponseList = categoryService.findAll();
+        return new ResponseEntity<>(categoryResponseList, HttpStatus.OK);
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<CategoryResponse> findById(@PathVariable Long id) {
+        return categoryService.findById(id)
+                .map(ResponseEntity::ok)
+                .orElseThrow(() ->
+                    new ObjectNotFoundException("Categoria não encontrada! Id: "+ id + "Tipo: "+ CategoryModel.class.getName())
+                );
+    }
+
+    @PutMapping("update/{id}")
+    public ResponseEntity<CategoryResponse> update(@PathVariable Long id, @RequestBody @Valid CategoryRequest categoryRequest){
+        CategoryResponse categoryResponse = categoryService.update(id, categoryRequest);
+        return new ResponseEntity<>(categoryResponse, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("delete/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void delete(@PathVariable Long id) {
         categoryService.delete(id);
-        return ResponseEntity.noContent().build();
-    }
-
-    @PutMapping("/update/{id}")
-    public ResponseEntity<CategoryModel> update(@PathVariable Long id, @RequestBody CategoryDTO categoryDTO){
-        CategoryModel obj = categoryService.update(id, categoryDTO);
-        return new ResponseEntity<>(obj, HttpStatus.CREATED);
     }
 }
